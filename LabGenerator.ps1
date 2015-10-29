@@ -12,7 +12,7 @@ $Memsize = 1024MB
     Write-Host "Creating VHD for VM $LABVM..." -NoNewline
     If ($VHD -eq $null) {
         New-VHD -ParentPath $VMTemplate -Path "$LabPath\$LABVM\$LABVM.vhdx" -Differencing | Out-Null
-        Write-Host -ForegroundColor Green " - Done."
+        Write-Host -ForegroundColor Green " - VHD creation for $LABVM Done."
     } else {
         Write-Host -ForegroundColor Gray " - Already Created"
     }
@@ -22,7 +22,7 @@ $Memsize = 1024MB
         Write-Host "Creating VM $LABVM..." -NoNewline
         If ($VM.Name -ne $LABVM) {
             New-VM -VHDPath "$LabPath\$LABVM\$LABVM.vhdx" -VMName $LABVM -MemoryStartupBytes $Memsize -SwitchName $Switch | Out-Null
-            Write-Host -ForegroundColor Green " - Done."
+            Write-Host -ForegroundColor Green " - CONFIGURATION for $LABVM Done."
         } else {
             Write-Host -ForegroundColor Gray " - Already Created"
         }
